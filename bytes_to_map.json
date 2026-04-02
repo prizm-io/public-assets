@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "anyOf": [
+      {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "word_address": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "string",
+                "pattern": "^(0x[0-9a-fA-F]+)$"
+              }
+            ]
+          },
+          "endian": {
+            "type": "string",
+            "enum": [
+              "le",
+              "be"
+            ]
+          },
+          "scale": {
+            "type": "number"
+          },
+          "offset": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "STRING",
+              "BYTES"
+            ]
+          },
+          "length": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "key",
+          "word_address",
+          "endian",
+          "type",
+          "length"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "word_address": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "string",
+                "pattern": "^(0x[0-9a-fA-F]+)$"
+              }
+            ]
+          },
+          "endian": {
+            "type": "string",
+            "enum": [
+              "le",
+              "be"
+            ]
+          },
+          "scale": {
+            "type": "number"
+          },
+          "offset": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "I8",
+              "U8",
+              "I16",
+              "U16",
+              "I32",
+              "U32",
+              "I64",
+              "U64",
+              "F32",
+              "F64",
+              "BOOL"
+            ]
+          },
+          "length": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "key",
+          "word_address",
+          "endian",
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    ]
+  }
+}
