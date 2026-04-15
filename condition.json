@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "condition": {
+        "$ref": "#/$defs/__schema0"
+      },
+      "actions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "sender": {
+              "type": "string"
+            },
+            "payload": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "static"
+                    },
+                    "datatype": {
+                      "type": "string",
+                      "enum": [
+                        "BOOL",
+                        "INT",
+                        "FLOAT",
+                        "STRING",
+                        "BYTES"
+                      ]
+                    },
+                    "value": {}
+                  },
+                  "required": [
+                    "type",
+                    "datatype",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "dynamic"
+                    },
+                    "receiver": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "receiver"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "sender",
+            "payload"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "condition",
+      "actions"
+    ],
+    "additionalProperties": false
+  },
+  "$defs": {
+    "__schema0": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "and"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "or"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string"
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "datatype": {
+              "type": "string",
+              "enum": [
+                "BOOL",
+                "INT",
+                "FLOAT",
+                "STRING",
+                "BYTES"
+              ]
+            },
+            "value": {}
+          },
+          "required": [
+            "type",
+            "receiver",
+            "operator",
+            "datatype",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}
