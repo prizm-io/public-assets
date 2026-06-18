@@ -79,7 +79,7 @@
   },
   "$defs": {
     "__schema0": {
-      "oneOf": [
+      "anyOf": [
         {
           "type": "object",
           "properties": {
@@ -141,6 +141,9 @@
                 ">="
               ]
             },
+            "length": {
+              "type": "boolean"
+            },
             "datatype": {
               "type": "string",
               "enum": [
@@ -156,9 +159,43 @@
           "required": [
             "type",
             "receiver",
+            "operator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string"
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "length": {
+              "type": "boolean"
+            },
+            "value_receiver": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "receiver",
             "operator",
-            "datatype",
-            "value"
+            "value_receiver"
           ],
           "additionalProperties": false
         }
