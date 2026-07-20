@@ -13,7 +13,8 @@
           "type": "object",
           "properties": {
             "sender": {
-              "type": "string"
+              "type": "string",
+              "label": "Sender"
             },
             "payload": {
               "oneOf": [
@@ -32,16 +33,21 @@
                         "FLOAT",
                         "STRING",
                         "BYTES"
-                      ]
+                      ],
+                      "label": "Data type"
                     },
-                    "value": {}
+                    "value": {
+                      "label": "Value",
+                      "fullWidth": true
+                    }
                   },
                   "required": [
                     "type",
                     "datatype",
                     "value"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "title": "Static value"
                 },
                 {
                   "type": "object",
@@ -51,14 +57,16 @@
                       "const": "dynamic"
                     },
                     "receiver": {
-                      "type": "string"
+                      "type": "string",
+                      "label": "Receiver"
                     }
                   },
                   "required": [
                     "type",
                     "receiver"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "title": "From receiver value"
                 }
               ]
             }
@@ -77,6 +85,8 @@
     ],
     "additionalProperties": false
   },
+  "x-form": true,
+  "title": "Logic rules",
   "$defs": {
     "__schema0": {
       "anyOf": [
@@ -98,7 +108,8 @@
             "type",
             "operands"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "All of (AND)"
         },
         {
           "type": "object",
@@ -118,7 +129,8 @@
             "type",
             "operands"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "Any of (OR)"
         },
         {
           "type": "object",
@@ -128,7 +140,8 @@
               "const": "eval"
             },
             "receiver": {
-              "type": "string"
+              "type": "string",
+              "label": "Receiver"
             },
             "operator": {
               "type": "string",
@@ -139,9 +152,11 @@
                 "<=",
                 ">",
                 ">="
-              ]
+              ],
+              "label": "Operator"
             },
             "length": {
+              "label": "Compare length",
               "type": "boolean"
             },
             "datatype": {
@@ -152,16 +167,21 @@
                 "FLOAT",
                 "STRING",
                 "BYTES"
-              ]
+              ],
+              "label": "Data type"
             },
-            "value": {}
+            "value": {
+              "label": "Value",
+              "fullWidth": true
+            }
           },
           "required": [
             "type",
             "receiver",
             "operator"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "Compare to value"
         },
         {
           "type": "object",
@@ -171,7 +191,8 @@
               "const": "eval"
             },
             "receiver": {
-              "type": "string"
+              "type": "string",
+              "label": "Receiver"
             },
             "operator": {
               "type": "string",
@@ -182,13 +203,17 @@
                 "<=",
                 ">",
                 ">="
-              ]
+              ],
+              "label": "Operator"
             },
             "length": {
+              "label": "Compare length",
               "type": "boolean"
             },
             "value_receiver": {
-              "type": "string"
+              "type": "string",
+              "label": "Value receiver",
+              "fullWidth": true
             }
           },
           "required": [
@@ -197,7 +222,8 @@
             "operator",
             "value_receiver"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "Compare to receiver"
         }
       ]
     }
