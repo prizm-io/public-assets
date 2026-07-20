@@ -14,7 +14,8 @@
           "properties": {
             "sender": {
               "type": "string",
-              "label": "Sender"
+              "label": "Sender",
+              "fullWidth": true
             },
             "payload": {
               "oneOf": [
@@ -95,53 +96,12 @@
           "properties": {
             "type": {
               "type": "string",
-              "const": "and"
-            },
-            "operands": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/__schema0"
-              }
-            }
-          },
-          "required": [
-            "type",
-            "operands"
-          ],
-          "additionalProperties": false,
-          "title": "All of (AND)"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "const": "or"
-            },
-            "operands": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/__schema0"
-              }
-            }
-          },
-          "required": [
-            "type",
-            "operands"
-          ],
-          "additionalProperties": false,
-          "title": "Any of (OR)"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
               "const": "eval"
             },
             "receiver": {
               "type": "string",
-              "label": "Receiver"
+              "label": "Receiver",
+              "fullWidth": true
             },
             "operator": {
               "type": "string",
@@ -192,7 +152,8 @@
             },
             "receiver": {
               "type": "string",
-              "label": "Receiver"
+              "label": "Receiver",
+              "fullWidth": true
             },
             "operator": {
               "type": "string",
@@ -224,6 +185,48 @@
           ],
           "additionalProperties": false,
           "title": "Compare to receiver"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "and"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false,
+          "title": "All of (AND)"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "or"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false,
+          "title": "Any of (OR)"
         }
       ]
     }
