@@ -129,12 +129,157 @@
           "type"
         ],
         "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "word_address": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "endian": {
+            "type": "string",
+            "enum": [
+              "le",
+              "be"
+            ]
+          },
+          "scale": {
+            "type": "number"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "if": {
+            "$ref": "#/$defs/__schema0"
+          },
+          "type": {
+            "type": "string",
+            "const": "BIT"
+          }
+        },
+        "required": [
+          "key",
+          "word_address",
+          "endian",
+          "offset",
+          "type"
+        ],
+        "additionalProperties": false
       }
     ]
   },
   "$defs": {
     "__schema0": {
       "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string",
+              "label": "Receiver",
+              "fullWidth": true
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ],
+              "label": "Operator"
+            },
+            "length": {
+              "label": "Compare length",
+              "type": "boolean"
+            },
+            "datatype": {
+              "type": "string",
+              "enum": [
+                "BOOL",
+                "INT",
+                "FLOAT",
+                "STRING",
+                "BYTES"
+              ],
+              "label": "Data type"
+            },
+            "value": {
+              "label": "Value",
+              "fullWidth": true
+            }
+          },
+          "required": [
+            "type",
+            "receiver",
+            "operator"
+          ],
+          "additionalProperties": false,
+          "title": "Compare to value"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string",
+              "label": "Receiver",
+              "fullWidth": true
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ],
+              "label": "Operator"
+            },
+            "length": {
+              "label": "Compare length",
+              "type": "boolean"
+            },
+            "value_receiver": {
+              "type": "string",
+              "label": "Value receiver",
+              "fullWidth": true
+            }
+          },
+          "required": [
+            "type",
+            "receiver",
+            "operator",
+            "value_receiver"
+          ],
+          "additionalProperties": false,
+          "title": "Compare to receiver"
+        },
         {
           "type": "object",
           "properties": {
@@ -153,7 +298,8 @@
             "type",
             "operands"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "All of (AND)"
         },
         {
           "type": "object",
@@ -173,86 +319,8 @@
             "type",
             "operands"
           ],
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "const": "eval"
-            },
-            "receiver": {
-              "type": "string"
-            },
-            "operator": {
-              "type": "string",
-              "enum": [
-                "==",
-                "!=",
-                "<",
-                "<=",
-                ">",
-                ">="
-              ]
-            },
-            "length": {
-              "type": "boolean"
-            },
-            "datatype": {
-              "type": "string",
-              "enum": [
-                "BOOL",
-                "INT",
-                "FLOAT",
-                "STRING",
-                "BYTES"
-              ]
-            },
-            "value": {}
-          },
-          "required": [
-            "type",
-            "receiver",
-            "operator"
-          ],
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "const": "eval"
-            },
-            "receiver": {
-              "type": "string"
-            },
-            "operator": {
-              "type": "string",
-              "enum": [
-                "==",
-                "!=",
-                "<",
-                "<=",
-                ">",
-                ">="
-              ]
-            },
-            "length": {
-              "type": "boolean"
-            },
-            "value_receiver": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "type",
-            "receiver",
-            "operator",
-            "value_receiver"
-          ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "title": "Any of (OR)"
         }
       ]
     }
