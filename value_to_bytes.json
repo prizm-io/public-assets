@@ -123,6 +123,9 @@
               "le",
               "be"
             ]
+          },
+          "count": {
+            "type": "boolean"
           }
         },
         "required": [
