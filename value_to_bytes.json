@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
   "items": {
-    "oneOf": [
+    "anyOf": [
       {
         "type": "object",
         "properties": {
@@ -15,24 +15,68 @@
             "const": "static"
           },
           "data": {
-            "type": "array",
-            "items": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "string",
-                  "pattern": "^(0x[0-9a-fA-F]+)$"
-                }
-              ]
-            }
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "BOOL",
+              "BYTES"
+            ]
           }
         },
         "required": [
           "id",
           "type",
-          "data"
+          "data",
+          "data_type"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "const": "static"
+          },
+          "data": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "U8",
+              "U16",
+              "U32",
+              "U64",
+              "I8",
+              "I16",
+              "I32",
+              "I64",
+              "F32",
+              "F64",
+              "STRING"
+            ]
+          },
+          "endian": {
+            "type": "string",
+            "enum": [
+              "le",
+              "be"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "data",
+          "data_type",
+          "endian"
         ],
         "additionalProperties": false
       },
@@ -53,14 +97,14 @@
           "data_type": {
             "type": "string",
             "enum": [
-              "I8",
               "U8",
-              "I16",
               "U16",
-              "I32",
               "U32",
-              "I64",
               "U64",
+              "I8",
+              "I16",
+              "I32",
+              "I64",
               "F32",
               "F64",
               "BOOL",
@@ -108,13 +152,7 @@
               "U8",
               "U16",
               "U32",
-              "U64",
-              "I8",
-              "I16",
-              "I32",
-              "I64",
-              "F32",
-              "F64"
+              "U64"
             ]
           },
           "endian": {
