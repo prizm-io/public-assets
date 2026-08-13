@@ -36,7 +36,14 @@
                         "STRING",
                         "BYTES"
                       ],
-                      "label": "Data type"
+                      "label": "Data type",
+                      "handleTypes": {
+                        "BOOL": "BOOL",
+                        "INT": "INT",
+                        "FLOAT": "FLOAT",
+                        "STRING": "STRING",
+                        "BYTES": "BYTES"
+                      }
                     },
                     "value": {
                       "label": "Value",
@@ -106,7 +113,8 @@
               "label": "Receiver",
               "fullWidth": true,
               "handle": "inputs",
-              "handleNested": "any"
+              "handleNested": "any",
+              "handleType": "datatype"
             },
             "operator": {
               "type": "string",
@@ -133,7 +141,14 @@
                 "STRING",
                 "BYTES"
               ],
-              "label": "Data type"
+              "label": "Data type",
+              "handleTypes": {
+                "BOOL": "BOOL",
+                "INT": "INT",
+                "FLOAT": "FLOAT",
+                "STRING": "STRING",
+                "BYTES": "BYTES"
+              }
             },
             "value": {
               "label": "Value",
