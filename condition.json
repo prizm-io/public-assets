@@ -15,7 +15,8 @@
             "sender": {
               "type": "string",
               "label": "Sender",
-              "fullWidth": true
+              "fullWidth": true,
+              "handle": "outputs"
             },
             "payload": {
               "oneOf": [
@@ -59,7 +60,9 @@
                     },
                     "receiver": {
                       "type": "string",
-                      "label": "Receiver"
+                      "label": "Receiver",
+                      "handle": "inputs",
+                      "handleNested": "any"
                     }
                   },
                   "required": [
@@ -101,7 +104,9 @@
             "receiver": {
               "type": "string",
               "label": "Receiver",
-              "fullWidth": true
+              "fullWidth": true,
+              "handle": "inputs",
+              "handleNested": "any"
             },
             "operator": {
               "type": "string",
@@ -153,7 +158,9 @@
             "receiver": {
               "type": "string",
               "label": "Receiver",
-              "fullWidth": true
+              "fullWidth": true,
+              "handle": "inputs",
+              "handleNested": "any"
             },
             "operator": {
               "type": "string",
@@ -174,7 +181,9 @@
             "value_receiver": {
               "type": "string",
               "label": "Value receiver",
-              "fullWidth": true
+              "fullWidth": true,
+              "handle": "inputs",
+              "handleNested": "any"
             }
           },
           "required": [
