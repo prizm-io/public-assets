@@ -16,7 +16,9 @@
               "type": "string",
               "label": "Sender",
               "fullWidth": true,
-              "handle": "outputs"
+              "handle": "outputs",
+              "handleType": "payload.datatype",
+              "handleTypeFrom": "payload.receiver"
             },
             "payload": {
               "oneOf": [
