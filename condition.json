@@ -72,6 +72,24 @@
                       "label": "Receiver",
                       "handle": "inputs",
                       "handleNested": "any"
+                    },
+                    "datatype": {
+                      "type": "string",
+                      "enum": [
+                        "BOOL",
+                        "INT",
+                        "FLOAT",
+                        "STRING",
+                        "BYTES"
+                      ],
+                      "label": "Data type",
+                      "handleTypes": {
+                        "BOOL": "BOOL",
+                        "INT": "INT",
+                        "FLOAT": "FLOAT",
+                        "STRING": "STRING",
+                        "BYTES": "BYTES"
+                      }
                     }
                   },
                   "required": [
