@@ -20,6 +20,11 @@
           "emit": {
             "label": "Include in output",
             "type": "boolean"
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -51,6 +56,11 @@
             ],
             "label": "Bytes",
             "fullWidth": true
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -95,6 +105,11 @@
           "emit": {
             "label": "Include in output",
             "type": "boolean"
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -128,6 +143,11 @@
             ],
             "label": "Bytes",
             "fullWidth": true
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -199,6 +219,11 @@
               "byte"
             ],
             "additionalProperties": false
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -233,5 +258,148 @@
     ]
   },
   "x-form": true,
-  "title": "Packet steps"
+  "title": "Packet steps",
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string",
+              "label": "Receiver",
+              "fullWidth": true
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ],
+              "label": "Operator"
+            },
+            "length": {
+              "label": "Compare length",
+              "type": "boolean"
+            },
+            "datatype": {
+              "type": "string",
+              "enum": [
+                "BOOL",
+                "INT",
+                "FLOAT",
+                "STRING",
+                "BYTES"
+              ],
+              "label": "Data type"
+            },
+            "value": {
+              "label": "Value",
+              "fullWidth": true
+            }
+          },
+          "required": [
+            "type",
+            "receiver",
+            "operator"
+          ],
+          "additionalProperties": false,
+          "title": "Compare to value"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "eval"
+            },
+            "receiver": {
+              "type": "string",
+              "label": "Receiver",
+              "fullWidth": true
+            },
+            "operator": {
+              "type": "string",
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ],
+              "label": "Operator"
+            },
+            "length": {
+              "label": "Compare length",
+              "type": "boolean"
+            },
+            "value_receiver": {
+              "type": "string",
+              "label": "Value receiver",
+              "fullWidth": true
+            }
+          },
+          "required": [
+            "type",
+            "receiver",
+            "operator",
+            "value_receiver"
+          ],
+          "additionalProperties": false,
+          "title": "Compare to receiver"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "and"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false,
+          "title": "All of (AND)"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "or"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "operands"
+          ],
+          "additionalProperties": false,
+          "title": "Any of (OR)"
+        }
+      ]
+    }
+  }
 }
