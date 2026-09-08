@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "frame": {
+      "type": "string",
+      "const": "3E",
+      "label": "Frame"
+    },
+    "format": {
+      "type": "string",
+      "const": "binary",
+      "label": "Format"
+    },
+    "tags": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "U8",
+                  "U16",
+                  "U32",
+                  "U64",
+                  "I8",
+                  "I16",
+                  "I32",
+                  "I64",
+                  "F32",
+                  "F64"
+                ],
+                "label": "Type"
+              },
+              "device": {
+                "type": "string",
+                "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
+                "label": "Device Tag"
+              },
+              "endian": {
+                "label": "Byte order",
+                "type": "string",
+                "enum": [
+                  "le",
+                  "be"
+                ]
+              },
+              "scale": {
+                "label": "Scale",
+                "type": "number"
+              },
+              "offset": {
+                "label": "Offset",
+                "type": "number"
+              }
+            },
+            "required": [
+              "type",
+              "device"
+            ],
+            "additionalProperties": false,
+            "title": "Number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "STRING",
+                  "BYTES"
+                ],
+                "label": "Type"
+              },
+              "device": {
+                "type": "string",
+                "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
+                "label": "Device Tag"
+              },
+              "endian": {
+                "label": "Byte order",
+                "type": "string",
+                "enum": [
+                  "le",
+                  "be"
+                ]
+              },
+              "length": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991,
+                "multipleOf": 2,
+                "label": "Length (bytes)"
+              }
+            },
+            "required": [
+              "type",
+              "device",
+              "length"
+            ],
+            "additionalProperties": false,
+            "title": "Text or raw bytes"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "BIT",
+                "label": "Type"
+              },
+              "device": {
+                "type": "string",
+                "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
+                "label": "Device Tag"
+              },
+              "endian": {
+                "label": "Byte order",
+                "type": "string",
+                "enum": [
+                  "le",
+                  "be"
+                ]
+              },
+              "bit": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 15,
+                "label": "Bit index"
+              }
+            },
+            "required": [
+              "type",
+              "device",
+              "bit"
+            ],
+            "additionalProperties": false,
+            "title": "Single bit"
+          }
+        ]
+      },
+      "label": "Tags",
+      "fullWidth": true
+    }
+  },
+  "required": [
+    "frame",
+    "format",
+    "tags"
+  ],
+  "additionalProperties": false,
+  "x-form": true,
+  "title": "MELSEC tags"
+}
