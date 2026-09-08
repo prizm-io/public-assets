@@ -40,22 +40,6 @@
                 "type": "string",
                 "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
                 "label": "Device Tag"
-              },
-              "endian": {
-                "label": "Byte order",
-                "type": "string",
-                "enum": [
-                  "le",
-                  "be"
-                ]
-              },
-              "scale": {
-                "label": "Scale",
-                "type": "number"
-              },
-              "offset": {
-                "label": "Offset",
-                "type": "number"
               }
             },
             "required": [
@@ -80,14 +64,6 @@
                 "type": "string",
                 "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
                 "label": "Device Tag"
-              },
-              "endian": {
-                "label": "Byte order",
-                "type": "string",
-                "enum": [
-                  "le",
-                  "be"
-                ]
               },
               "length": {
                 "type": "integer",
@@ -117,14 +93,6 @@
                 "type": "string",
                 "pattern": "^[A-Z]{1,4}[0-9A-F]+$",
                 "label": "Device Tag"
-              },
-              "endian": {
-                "label": "Byte order",
-                "type": "string",
-                "enum": [
-                  "le",
-                  "be"
-                ]
               },
               "bit": {
                 "type": "integer",
