@@ -8,7 +8,40 @@
         "properties": {
           "id": {
             "type": "string",
-            "minLength": 1,
+            "label": "ID"
+          },
+          "type": {
+            "type": "string",
+            "const": "static"
+          },
+          "data": {
+            "type": "string",
+            "label": "Data",
+            "fullWidth": true
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "BOOL",
+              "BYTES"
+            ],
+            "label": "Data type"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "data",
+          "data_type"
+        ],
+        "additionalProperties": false,
+        "title": "Static — bool or bytes"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
             "label": "ID"
           },
           "type": {
@@ -33,9 +66,7 @@
               "I64",
               "F32",
               "F64",
-              "BOOL",
-              "STRING",
-              "BYTES"
+              "STRING"
             ],
             "label": "Data type"
           },
@@ -52,10 +83,11 @@
           "id",
           "type",
           "data",
-          "data_type"
+          "data_type",
+          "endian"
         ],
         "additionalProperties": false,
-        "title": "Static — fixed value"
+        "title": "Static — number or string"
       },
       {
         "type": "object",
