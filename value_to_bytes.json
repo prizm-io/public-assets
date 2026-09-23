@@ -8,91 +8,17 @@
         "properties": {
           "id": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "label": "ID"
           },
           "type": {
             "type": "string",
             "const": "static"
           },
           "data": {
-            "type": "string"
-          },
-          "data_type": {
             "type": "string",
-            "enum": [
-              "BOOL",
-              "BYTES"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "type",
-          "data",
-          "data_type"
-        ],
-        "additionalProperties": false
-      },
-      {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "type": {
-            "type": "string",
-            "const": "static"
-          },
-          "data": {
-            "type": "string"
-          },
-          "data_type": {
-            "type": "string",
-            "enum": [
-              "U8",
-              "U16",
-              "U32",
-              "U64",
-              "I8",
-              "I16",
-              "I32",
-              "I64",
-              "F32",
-              "F64",
-              "STRING"
-            ]
-          },
-          "endian": {
-            "type": "string",
-            "enum": [
-              "le",
-              "be"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "type",
-          "data",
-          "data_type",
-          "endian"
-        ],
-        "additionalProperties": false
-      },
-      {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "type": {
-            "type": "string",
-            "const": "dynamic"
-          },
-          "key": {
-            "type": "string"
+            "label": "Data",
+            "fullWidth": true
           },
           "data_type": {
             "type": "string",
@@ -110,14 +36,70 @@
               "BOOL",
               "STRING",
               "BYTES"
-            ]
+            ],
+            "label": "Data type"
           },
           "endian": {
             "type": "string",
             "enum": [
               "le",
               "be"
-            ]
+            ],
+            "label": "Byte order"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "data",
+          "data_type"
+        ],
+        "additionalProperties": false,
+        "title": "Static — fixed value"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "label": "ID"
+          },
+          "type": {
+            "type": "string",
+            "const": "dynamic"
+          },
+          "key": {
+            "type": "string",
+            "label": "Key",
+            "fullWidth": true
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "U8",
+              "U16",
+              "U32",
+              "U64",
+              "I8",
+              "I16",
+              "I32",
+              "I64",
+              "F32",
+              "F64",
+              "BOOL",
+              "STRING",
+              "BYTES"
+            ],
+            "label": "Data type"
+          },
+          "endian": {
+            "type": "string",
+            "enum": [
+              "le",
+              "be"
+            ],
+            "label": "Byte order"
           }
         },
         "required": [
@@ -127,14 +109,16 @@
           "data_type",
           "endian"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "title": "Dynamic — from input key"
       },
       {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "label": "ID"
           },
           "type": {
             "type": "string",
@@ -144,7 +128,9 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "label": "Field IDs",
+            "fullWidth": true
           },
           "data_type": {
             "type": "string",
@@ -153,16 +139,19 @@
               "U16",
               "U32",
               "U64"
-            ]
+            ],
+            "label": "Data type"
           },
           "endian": {
             "type": "string",
             "enum": [
               "le",
               "be"
-            ]
+            ],
+            "label": "Byte order"
           },
           "count": {
+            "label": "Count fields",
             "type": "boolean"
           }
         },
@@ -173,8 +162,11 @@
           "data_type",
           "endian"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "title": "Length — of other fields"
       }
     ]
-  }
+  },
+  "x-form": true,
+  "title": "Byte fields"
 }
