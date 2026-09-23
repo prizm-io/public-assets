@@ -7,54 +7,71 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^.]+(?:\\.[^.]+)*$",
+            "label": "Key",
+            "fullWidth": true
           },
           "word_address": {
             "anyOf": [
               {
                 "type": "integer",
                 "minimum": -9007199254740991,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "title": "Number"
               },
               {
-                "type": "string"
+                "type": "string",
+                "title": "Text"
               }
-            ]
+            ],
+            "label": "Word address"
           },
           "endian": {
             "type": "string",
             "enum": [
               "le",
               "be"
-            ]
+            ],
+            "label": "Byte order"
           },
           "scale": {
+            "label": "Scale",
             "type": "number"
           },
           "offset": {
+            "label": "Offset",
             "type": "number"
-          },
-          "if": {
-            "$ref": "#/$defs/__schema0"
           },
           "type": {
             "type": "string",
             "enum": [
               "STRING",
               "BYTES"
-            ]
+            ],
+            "label": "Data type"
           },
           "length": {
             "anyOf": [
               {
                 "type": "integer",
                 "minimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "title": "Fixed count"
               },
               {
-                "type": "string"
+                "type": "string",
+                "title": "Expression or hex"
               }
-            ]
+            ],
+            "label": "Length",
+            "fullWidth": true
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -64,62 +81,77 @@
           "type",
           "length"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "title": "String or bytes"
       },
       {
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^.]+(?:\\.[^.]+)*$",
+            "label": "Key",
+            "fullWidth": true
           },
           "word_address": {
             "anyOf": [
               {
                 "type": "integer",
                 "minimum": -9007199254740991,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "title": "Number"
               },
               {
-                "type": "string"
+                "type": "string",
+                "title": "Text"
               }
-            ]
+            ],
+            "label": "Word address"
           },
           "endian": {
             "type": "string",
             "enum": [
               "le",
               "be"
-            ]
+            ],
+            "label": "Byte order"
           },
           "scale": {
+            "label": "Scale",
             "type": "number"
           },
           "offset": {
+            "label": "Offset",
             "type": "number"
-          },
-          "if": {
-            "$ref": "#/$defs/__schema0"
           },
           "type": {
             "type": "string",
             "enum": [
-              "I8",
               "U8",
-              "I16",
               "U16",
-              "I32",
               "U32",
-              "I64",
               "U64",
+              "I8",
+              "I16",
+              "I32",
+              "I64",
               "F32",
               "F64",
               "BOOL"
-            ]
+            ],
+            "label": "Data type"
           },
           "length": {
+            "label": "Length",
             "type": "integer",
             "exclusiveMinimum": 0,
             "maximum": 9007199254740991
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -128,47 +160,60 @@
           "endian",
           "type"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "title": "Number or boolean"
       },
       {
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^.]+(?:\\.[^.]+)*$",
+            "label": "Key",
+            "fullWidth": true
           },
           "word_address": {
             "anyOf": [
               {
                 "type": "integer",
                 "minimum": -9007199254740991,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "title": "Number"
               },
               {
-                "type": "string"
+                "type": "string",
+                "title": "Text"
               }
-            ]
+            ],
+            "label": "Word address"
           },
           "endian": {
             "type": "string",
             "enum": [
               "le",
               "be"
-            ]
+            ],
+            "label": "Byte order"
           },
           "scale": {
+            "label": "Scale",
             "type": "number"
           },
           "offset": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
-          },
-          "if": {
-            "$ref": "#/$defs/__schema0"
+            "maximum": 9007199254740991,
+            "label": "Bit index"
           },
           "type": {
             "type": "string",
             "const": "BIT"
+          },
+          "if": {
+            "label": "If",
+            "fullWidth": true,
+            "$ref": "#/$defs/__schema0"
           }
         },
         "required": [
@@ -178,10 +223,13 @@
           "offset",
           "type"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "title": "Bit"
       }
     ]
   },
+  "x-form": true,
+  "title": "Parser fields",
   "$defs": {
     "__schema0": {
       "anyOf": [
