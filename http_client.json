@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ],
+      "label": "Method"
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "label": "URL",
+      "fullWidth": true
+    },
+    "headers": {
+      "label": "Headers",
+      "fullWidth": true,
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "label": "Key"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "fullWidth": true
+      }
+    },
+    "body": {
+      "label": "Body",
+      "fullWidth": true,
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "label": "Key"
+      },
+      "additionalProperties": {
+        "fullWidth": true
+      }
+    }
+  },
+  "required": [
+    "method",
+    "url"
+  ],
+  "additionalProperties": false,
+  "x-form": true,
+  "title": "HTTP request"
+}
