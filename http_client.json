@@ -26,10 +26,11 @@
       "propertyNames": {
         "type": "string",
         "minLength": 1,
-        "label": "Key"
+        "label": "Name"
       },
       "additionalProperties": {
         "type": "string",
+        "label": "Value",
         "fullWidth": true
       }
     },
@@ -43,6 +44,8 @@
         "label": "Key"
       },
       "additionalProperties": {
+        "$ref": "#/$defs/NonNullValue",
+        "label": "Value",
         "fullWidth": true
       }
     }
@@ -53,5 +56,22 @@
   ],
   "additionalProperties": false,
   "x-form": true,
-  "title": "HTTP request"
+  "title": "HTTP request",
+  "$defs": {
+    "NonNullValue": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ],
+      "items": {
+        "$ref": "#/$defs/NonNullValue"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/NonNullValue"
+      }
+    }
+  }
 }
